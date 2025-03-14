@@ -2,7 +2,11 @@ import os
 import json
 from openai import OpenAI
 
-openai = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
+api_key = os.environ.get("OPENAI_API_KEY")
+if not api_key:
+    logger.error("OPENAI_API_KEY not found in environment variables")
+    raise ValueError("OPENAI_API_KEY is required")
+openai = OpenAI(api_key=api_key)
 
 def get_travel_tips(user_bookings):
     try:
