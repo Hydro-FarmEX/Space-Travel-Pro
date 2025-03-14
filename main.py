@@ -72,14 +72,24 @@ def chat():
         data = request.json
         message = data.get('message')
         if not message:
+            logger.warning("Chat request received with no message")
             return jsonify({"error": "No message provided"}), 400
 
-        # Generate response using OpenAI
+        logger.info(f"Processing chat message: {message[:50]}...")  # Log first 50 chars
         response = generate_chat_response(message)
+
+        if not response:
+            logger.error("Empty response received from chat generator")
+            return jsonify({"error": "Failed to generate response"}), 500
+
+        logger.info("Successfully generated chat response")
         return jsonify({"response": response})
     except Exception as e:
         logger.error(f"Chat error: {str(e)}")
-        return jsonify({"error": "Failed to process chat message"}), 500
+        return jsonify({
+            "error": "Failed to process chat message",
+            "message": "Our AI assistant is temporarily unavailable. Please try again shortly."
+        }), 500
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
