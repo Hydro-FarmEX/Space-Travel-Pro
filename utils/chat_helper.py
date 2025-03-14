@@ -26,18 +26,21 @@ def generate_chat_response(user_message):
         If you don't know something, admit it and suggest contacting our customer service.
         """
 
-        response = openai.chat.completions.create(
-            model="gpt-3.5-turbo",  # Using more widely available model
-            messages=[
-                {"role": "system", "content": system_prompt},
-                {"role": "user", "content": user_message}
-            ],
-            max_tokens=150,  # Keep responses concise
-            temperature=0.7  # Balance between creativity and consistency
+        messages = [
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_message}
+        ]
+
+        response = openai.completions.create(
+            model="text-davinci-003",  # Using older model which might be available by default
+            prompt=f"{system_prompt}\n\nUser: {user_message}\nAssistant:",
+            max_tokens=150,
+            temperature=0.7,
+            stop=["User:", "Assistant:"]
         )
 
         logger.debug("Successfully generated OpenAI response")
-        return response.choices[0].message.content
+        return response.choices[0].text.strip()
     except Exception as e:
         logger.error(f"Error generating chat response: {str(e)}")
         return "I'm currently experiencing connectivity issues. For immediate assistance, please try our contact form or email support@spacetravel.com."
