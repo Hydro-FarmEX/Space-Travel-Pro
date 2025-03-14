@@ -99,12 +99,55 @@ accommodations = {
 users = {
     "user123": {
         "id": "user123",
-        "name": "John Doe",
-        "email": "john@example.com",
-        "preferences": ["Luxury", "Long Duration"]
+        "name": "Sarah Armstrong",
+        "email": "sarah@example.com",
+        "avatar": "👩‍🚀",
+        "preferences": ["Luxury", "Long Duration"],
+        "points": 12500,
+        "achievements": ["🚀 First Trip", "🌟 Elite Explorer", "🔴 Mars Pioneer"]
+    },
+    "user456": {
+        "id": "user456",
+        "name": "Alex Chen",
+        "email": "alex@example.com",
+        "avatar": "👨‍🚀",
+        "preferences": ["Adventure", "Science"],
+        "points": 9800,
+        "achievements": ["🚀 First Trip", "🌙 Lunar Explorer"]
+    },
+    "user789": {
+        "id": "user789",
+        "name": "Elena Kumar",
+        "email": "elena@example.com",
+        "avatar": "👩‍🚀",
+        "preferences": ["VIP", "Photography"],
+        "points": 15200,
+        "achievements": ["🚀 First Trip", "🌟 Elite Explorer", "🌍 Earth Orbit Master"]
+    },
+    "user101": {
+        "id": "user101",
+        "name": "Marcus Williams",
+        "email": "marcus@example.com",
+        "avatar": "👨‍🚀",
+        "preferences": ["Research", "Extended Stay"],
+        "points": 7500,
+        "achievements": ["🚀 First Trip", "🔬 Space Scientist"]
+    },
+    "user102": {
+        "id": "user102",
+        "name": "Yuki Tanaka",
+        "email": "yuki@example.com",
+        "avatar": "👩‍🚀",
+        "preferences": ["Zero Gravity", "Photography"],
+        "points": 11300,
+        "achievements": ["🚀 First Trip", "📸 Space Photographer"]
     }
 }
 
 bookings = {
-    "user123": []
+    "user123": [],
+    "user456": [],
+    "user789": [],
+    "user101": [],
+    "user102": []
 }

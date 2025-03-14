@@ -73,3 +73,16 @@ class AchievementSystem:
         ]
 
 achievement_system = AchievementSystem()
+
+# Initialize with mock data
+for user_id, user_data in users.items():
+    achievement_system.user_points[user_id] = user_data['points']
+    achievement_system.user_achievements[user_id] = [
+        {
+            "id": achievement.lower().replace(" ", "_"),
+            "name": achievement.split(" ", 1)[1],
+            "description": f"Earned the {achievement.split(' ', 1)[1]} achievement",
+            "icon": achievement.split(" ")[0]
+        }
+        for achievement in user_data['achievements']
+    ]
