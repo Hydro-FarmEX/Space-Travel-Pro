@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Book a Trip{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <h2>Available Space Trips</h2>
+        <div id="tripList" class="mt-4">
+            {% for trip in trips.values() %}
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">{{ trip.destination }}</h5>
+                    <p class="card-text">
+                        <strong>Departure:</strong> {{ trip.departure_date }}<br>
+                        <strong>Duration:</strong> {{ trip.duration }}<br>
+                        <strong>Class:</strong> {{ trip.class }}<br>
+                        <strong>Price:</strong> ${{ "{:,}".format(trip.price) }}<br>
+                        <strong>Available Seats:</strong> {{ trip.available_seats }}
+                    </p>
+                    <button class="btn btn-primary book-trip" data-trip-id="{{ trip.id }}">
+                        Book Now
+                    </button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<script src="/static/js/booking.js"></script>
+{% endblock %}

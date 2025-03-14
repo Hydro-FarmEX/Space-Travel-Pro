@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8">
+        <h2>Your Bookings</h2>
+        <div id="bookingsList">
+            {% if bookings %}
+                {% for booking in bookings %}
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ booking.destination }}</h5>
+                        <p class="card-text">
+                            <strong>Departure:</strong> {{ booking.departure_date }}<br>
+                            <strong>Class:</strong> {{ booking.class }}<br>
+                            <strong>Duration:</strong> {{ booking.duration }}
+                        </p>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p>No bookings found.</p>
+            {% endif %}
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <h3>Travel Tips</h3>
+        <div id="aiTips" class="card">
+            <div class="card-body">
+                <p>Loading personalized tips...</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/static/js/dashboard.js"></script>
+{% endblock %}

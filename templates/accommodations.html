@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Accommodations{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h2 class="mb-4">Space Accommodations</h2>
+        
+        <div class="row">
+            {% for acc in accommodations.values() %}
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ acc.name }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ acc.type }}</h6>
+                        <p class="card-text">{{ acc.description }}</p>
+                        <p class="card-text">
+                            <strong>Price per night:</strong> ${{ "{:,}".format(acc.price_per_night) }}
+                        </p>
+                        <button class="btn btn-primary">Book Accommodation</button>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

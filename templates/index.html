@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="text-center py-5">
+    <h1 class="display-4">Welcome to Space Travel</h1>
+    <p class="lead">Experience the future of travel with our luxury space tours</p>
+    
+    <div class="row mt-5">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Mars Colony</h5>
+                    <p class="card-text">Visit the first human settlement on Mars</p>
+                    <a href="/book" class="btn btn-primary">Book Now</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Lunar Base</h5>
+                    <p class="card-text">Experience life on the Moon</p>
+                    <a href="/book" class="btn btn-primary">Book Now</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Space Station</h5>
+                    <p class="card-text">Orbital luxury accommodations</p>
+                    <a href="/accommodations" class="btn btn-primary">View Details</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

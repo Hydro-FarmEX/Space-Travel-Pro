@@ -1,0 +1,44 @@
+/* Custom styles to complement Bootstrap dark theme */
+.card {
+    border: 1px solid var(--bs-gray-700);
+    margin-bottom: 1rem;
+}
+
+.navbar {
+    margin-bottom: 2rem;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: var(--bs-gray-900) !important;
+}
+
+/* Add some space at the bottom to prevent content from being hidden by footer */
+body {
+    padding-bottom: 70px;
+}
+
+/* Custom styling for prices */
+.display-4 {
+    color: var(--bs-primary);
+    font-weight: bold;
+}
+
+/* Improve card hover effects */
+.card:hover {
+    transform: translateY(-5px);
+    transition: transform 0.3s ease;
+}
+
+/* Custom styling for buttons */
+.btn-primary {
+    background-color: var(--bs-primary);
+    border-color: var(--bs-primary);
+}
+
+.btn-primary:hover {
+    background-color: var(--bs-primary-dark);
+    border-color: var(--bs-primary-dark);
+}
