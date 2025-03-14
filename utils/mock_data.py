@@ -4,7 +4,7 @@ trips = {
     "mars-colony": {
         "id": "mars-colony",
         "destination": "Mars Colony Alpha",
-        "departure_date": "2024-12-01",
+        "departure_date": "2025-12-01",
         "departure_time": "08:00 UTC",
         "spacecraft": "SpaceX Starship MK4",
         "duration": "8 months",
@@ -26,7 +26,7 @@ trips = {
     "lunar-base": {
         "id": "lunar-base",
         "destination": "Lunar Base Artemis",
-        "departure_date": "2024-10-15",
+        "departure_date": "2025-10-15",
         "departure_time": "12:00 UTC",
         "spacecraft": "Blue Origin New Armstrong",
         "duration": "5 days",
@@ -48,7 +48,7 @@ trips = {
     "orbital-hotel": {
         "id": "orbital-hotel",
         "destination": "Orbital Grand Hotel",
-        "departure_date": "2024-09-01",
+        "departure_date": "2025-09-01",
         "departure_time": "15:00 UTC",
         "spacecraft": "Virgin Galactic Unity",
         "duration": "14 days",
