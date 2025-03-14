@@ -1,29 +1,69 @@
+
 {% extends "base.html" %}
 
 {% block title %}Book a Trip{% endblock %}
 
 {% block content %}
-<div class="row">
-    <div class="col-md-8 offset-md-2">
-        <h2>Available Space Trips</h2>
-        <div id="tripList" class="mt-4">
-            {% for trip in trips.values() %}
-            <div class="card mb-3">
-                <div class="card-body">
-                    <h5 class="card-title">{{ trip.destination }}</h5>
-                    <p class="card-text">
-                        <strong>Departure:</strong> {{ trip.departure_date }}<br>
-                        <strong>Duration:</strong> {{ trip.duration }}<br>
-                        <strong>Class:</strong> {{ trip.class }}<br>
-                        <strong>Price:</strong> ${{ "{:,}".format(trip.price) }}<br>
-                        <strong>Available Seats:</strong> {{ trip.available_seats }}
-                    </p>
-                    <button class="btn btn-primary book-trip" data-trip-id="{{ trip.id }}">
-                        Book Now
-                    </button>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8">
+            <h2 class="text-center mb-4">Available Space Trips</h2>
+            <div id="tripList" class="row">
+                {% for trip in trips.values() %}
+                <div class="col-md-6 mb-4">
+                    <div class="card trip-card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ trip.destination }}</h5>
+                            <div class="trip-details">
+                                <p><i data-feather="calendar"></i> Departure: {{ trip.departure_date }} {{ trip.departure_time }}</p>
+                                <p><i data-feather="clock"></i> Duration: {{ trip.duration }}</p>
+                                <p><i data-feather="airplay"></i> Spacecraft: {{ trip.spacecraft }}</p>
+                                
+                                <div class="pricing-tiers mt-3">
+                                    <h6>Pricing Tiers:</h6>
+                                    <ul class="list-unstyled">
+                                        <li>Economy: ${{ "{:,}".format(trip.price.economy) }}</li>
+                                        <li>Business: ${{ "{:,}".format(trip.price.business) }}</li>
+                                        <li>VIP: ${{ "{:,}".format(trip.price.vip) }}</li>
+                                    </ul>
+                                </div>
+
+                                <div class="crew-info mt-3">
+                                    <h6>Crew:</h6>
+                                    <ul class="list-unstyled">
+                                        {% for role, name in trip.crew.items() %}
+                                        <li>{{ role.replace('_', ' ').title() }}: {{ name }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+
+                                <div class="experiences mt-3">
+                                    <h6>Experiences:</h6>
+                                    <ul>
+                                        {% for exp in trip.experiences %}
+                                        <li>{{ exp }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary book-trip mt-3" data-trip-id="{{ trip.id }}">
+                                Book Now
+                            </button>
+                        </div>
+                    </div>
                 </div>
+                {% endfor %}
             </div>
-            {% endfor %}
+        </div>
+        <div class="col-md-4">
+            <div id="map" style="height: 400px;" class="mb-4"></div>
+            <div class="launch-site-info">
+                <h4>Launch Site: Museum of the Future, Dubai</h4>
+                <p>Next launch countdown: <span id="countdown">Loading...</span></p>
+            </div>
         </div>
     </div>
 </div>

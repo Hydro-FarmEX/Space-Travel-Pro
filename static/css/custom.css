@@ -257,3 +257,70 @@ a, button {
     background: rgba(255, 255, 255, 0.1);
     margin-right: auto;
 }
+/* Space theme */
+body {
+    background: linear-gradient(to bottom, #0B0B1A, #1A1A2E);
+    color: #fff;
+}
+
+.trip-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.trip-card:hover {
+    box-shadow: 0 0 20px rgba(66, 220, 255, 0.3);
+}
+
+.card-title {
+    color: #42DCFF;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, #42DCFF, #2B88D9);
+    border: none;
+    transition: transform 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: scale(1.05);
+    background: linear-gradient(45deg, #2B88D9, #42DCFF);
+}
+
+#map {
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 20px rgba(66, 220, 255, 0.1);
+}
+
+.launch-site-info {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    margin-top: 20px;
+}
+
+#countdown {
+    color: #42DCFF;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.pricing-tiers, .crew-info, .experiences {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    border-radius: 8px;
+    margin: 10px 0;
+}
+
+.feather {
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+    vertical-align: text-bottom;
+}
