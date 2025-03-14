@@ -1,40 +1,70 @@
+
 {% extends "base.html" %}
 
 {% block title %}Dashboard{% endblock %}
 
 {% block content %}
-<div class="row">
-    <div class="col-md-8">
-        <h2>Your Bookings</h2>
-        <div id="bookingsList">
-            {% if bookings %}
-                {% for booking in bookings %}
-                <div class="card mb-3">
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <h2>Your Space Travel NFTs</h2>
+            <div id="nftGallery" class="row">
+                {% if bookings %}
+                    {% for booking in bookings %}
+                    <div class="col-md-6 mb-4">
+                        <div class="card nft-card">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ booking.destination }}</h5>
+                                <p class="card-text">
+                                    <strong>Departure:</strong> {{ booking.departure_date }}<br>
+                                    <strong>Class:</strong> {{ booking.class }}<br>
+                                    <strong>Duration:</strong> {{ booking.duration }}
+                                </p>
+                                {% if booking.nft_token_id %}
+                                <div class="nft-badge">
+                                    <i data-feather="award"></i> NFT Minted
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <p>No bookings found.</p>
+                {% endif %}
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="achievements-section mb-4">
+                <h3>Your Achievements</h3>
+                <div id="achievementsList" class="card">
                     <div class="card-body">
-                        <h5 class="card-title">{{ booking.destination }}</h5>
-                        <p class="card-text">
-                            <strong>Departure:</strong> {{ booking.departure_date }}<br>
-                            <strong>Class:</strong> {{ booking.class }}<br>
-                            <strong>Duration:</strong> {{ booking.duration }}
-                        </p>
+                        <div class="points-display mb-3">
+                            <h4>Space Points</h4>
+                            <div class="points">Loading...</div>
+                        </div>
+                        <div class="badges-grid">
+                            Loading achievements...
+                        </div>
                     </div>
                 </div>
-                {% endfor %}
-            {% else %}
-                <p>No bookings found.</p>
-            {% endif %}
-        </div>
-    </div>
-    
-    <div class="col-md-4">
-        <h3>Travel Tips</h3>
-        <div id="aiTips" class="card">
-            <div class="card-body">
-                <p>Loading personalized tips...</p>
+            </div>
+            
+            <div class="leaderboard-section">
+                <h3>Top Space Travelers</h3>
+                <div id="leaderboard" class="card">
+                    <div class="card-body">
+                        <div class="leaderboard-list">
+                            Loading leaderboard...
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
+<script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"></script>
 <script src="/static/js/dashboard.js"></script>
 {% endblock %}

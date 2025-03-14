@@ -42,15 +42,31 @@ def book_trip():
         data = request.json
         trip_id = data.get('trip_id')
         user_id = "user123"  # In production, get from session
+        wallet_address = data.get('wallet_address')
         
         if trip_id not in trips:
             return jsonify({"error": "Invalid trip ID"}), 400
             
         if user_id not in bookings:
             bookings[user_id] = []
-            
-        bookings[user_id].append(trips[trip_id])
-        return jsonify({"message": "Booking successful"})
+        
+        trip_data = trips[trip_id].copy()
+        bookings[user_id].append(trip_data)
+        
+        # Mint NFT ticket
+        if wallet_address:
+            receipt = mint_space_ticket(wallet_address, trip_data)
+            if receipt:
+                trip_data['nft_token_id'] = receipt['tokenId']
+        
+        # Check for achievements
+        new_achievements = achievement_system.check_achievements(user_id, trip_data)
+        
+        return jsonify({
+            "message": "Booking successful",
+            "nft_minted": bool(receipt if wallet_address else False),
+            "new_achievements": new_achievements
+        })
     except Exception as e:
         logger.error(f"Booking error: {str(e)}")
         return jsonify({"error": "Booking failed"}), 500
@@ -65,6 +81,20 @@ def ai_tips():
     except Exception as e:
         logger.error(f"AI tips error: {str(e)}")
         return jsonify({"error": "Failed to get travel tips"}), 500
+
+
+
+@app.route('/api/leaderboard', methods=['GET'])
+def get_leaderboard():
+    return jsonify(achievement_system.get_leaderboard())
+
+@app.route('/api/user/achievements', methods=['GET'])
+def get_user_achievements():
+    user_id = "user123"  # In production, get from session
+    return jsonify({
+        "achievements": achievement_system.user_achievements[user_id],
+        "points": achievement_system.user_points[user_id]
+    })
 
 @app.route('/api/chat', methods=['POST'])
 def chat():
