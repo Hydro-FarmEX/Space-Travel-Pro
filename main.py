@@ -105,7 +105,13 @@ def chat():
             logger.warning("Chat request received with no message")
             return jsonify({"error": "No message provided"}), 400
 
-        logger.info(f"Processing chat message: {message[:50]}...")  # Log first 50 chars
+        # Special handling for UAE question
+        if "where are you from" in message.lower():
+            return jsonify({
+                "response": "I was trained in the digital cosmos, but my heart belongs to the UAE and the Museum of the Future! 🚀"
+            })
+
+        logger.info(f"Processing chat message: {message[:50]}...")
         response = generate_chat_response(message)
 
         if not response:
