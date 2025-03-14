@@ -64,6 +64,28 @@
         </div>
     </footer>
 
+    <!-- Chat Widget -->
+    <button class="chat-toggle" id="chatToggle">
+        <i data-feather="message-circle"></i>
+    </button>
+
+    <div class="chat-widget" id="chatWidget">
+        <div class="chat-header">
+            <i data-feather="user" style="width: 24px; height: 24px;"></i>
+            <h5 class="mb-0">Space Travel Assistant</h5>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="message bot-message">
+                Hello! I'm your space travel assistant. How can I help you today?
+            </div>
+        </div>
+        <div class="chat-input-container">
+            <input type="text" class="chat-input" id="chatInput" 
+                   placeholder="Ask about space travel..."
+                   onkeypress="if(event.key === 'Enter') sendMessage()">
+        </div>
+    </div>
+
     <script>
         // Initialize Feather icons
         feather.replace();
@@ -111,5 +133,6 @@
             animate();
         });
     </script>
+    <script src="/static/js/chat.js"></script>
 </body>
 </html>

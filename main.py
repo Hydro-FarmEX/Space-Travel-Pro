@@ -3,6 +3,7 @@ import logging
 from flask import Flask, render_template, request, jsonify, session, redirect, url_for
 from utils.ai_helper import get_travel_tips
 from utils.mock_data import trips, accommodations, users, bookings
+from utils.chat_helper import generate_chat_response
 
 # Configure logging
 logging.basicConfig(level=logging.DEBUG)
@@ -64,6 +65,21 @@ def ai_tips():
     except Exception as e:
         logger.error(f"AI tips error: {str(e)}")
         return jsonify({"error": "Failed to get travel tips"}), 500
+
+@app.route('/api/chat', methods=['POST'])
+def chat():
+    try:
+        data = request.json
+        message = data.get('message')
+        if not message:
+            return jsonify({"error": "No message provided"}), 400
+
+        # Generate response using OpenAI
+        response = generate_chat_response(message)
+        return jsonify({"response": response})
+    except Exception as e:
+        logger.error(f"Chat error: {str(e)}")
+        return jsonify({"error": "Failed to process chat message"}), 500
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
