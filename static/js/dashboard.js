@@ -1,4 +1,25 @@
+function calculateTotals(bookings) {
+    let tripsTotal = 0;
+    let accommodationsTotal = 0;
+
+    bookings.forEach(booking => {
+        if (booking.type === 'accommodation') {
+            accommodationsTotal += booking.price_per_night;
+        } else {
+            // Assuming economy class if not specified
+            tripsTotal += booking.price.economy;
+        }
+    });
+
+    document.getElementById('tripsTotal').textContent = tripsTotal.toLocaleString();
+    document.getElementById('accommodationsTotal').textContent = accommodationsTotal.toLocaleString();
+    document.getElementById('grandTotal').textContent = (tripsTotal + accommodationsTotal).toLocaleString();
+}
+
 document.addEventListener('DOMContentLoaded', function() {
+    // Calculate totals when bookings are loaded
+    const bookings = JSON.parse(document.getElementById('bookings-data').textContent || '[]');
+    calculateTotals(bookings);
     async function loadAITips() {
         const tipsElement = document.getElementById('aiTips');
 

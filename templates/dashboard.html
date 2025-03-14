@@ -1,4 +1,3 @@
-
 {% extends "base.html" %}
 
 {% block title %}Dashboard{% endblock %}
@@ -7,7 +6,17 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8">
-            <h2>Your Space Travel NFTs</h2>
+                <div class="total-spending mb-4">
+                    <h3>Total Spending</h3>
+                    <div class="card">
+                        <div class="card-body">
+                            <p><strong>Trips Total:</strong> $<span id="tripsTotal">0</span></p>
+                            <p><strong>Accommodations Total:</strong> $<span id="accommodationsTotal">0</span></p>
+                            <h4>Grand Total: $<span id="grandTotal">0</span></h4>
+                        </div>
+                    </div>
+                </div>
+                <h2>Your Space Travel NFTs</h2>
             <div id="nftGallery" class="row">
                 {% if bookings %}
                     {% for booking in bookings %}
@@ -34,7 +43,7 @@
                 {% endif %}
             </div>
         </div>
-        
+
         <div class="col-md-4">
             <div class="achievements-section mb-4">
                 <h3>Your Achievements</h3>
@@ -50,7 +59,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="leaderboard-section">
                 <h3>Top Space Travelers</h3>
                 <div id="leaderboard" class="card">

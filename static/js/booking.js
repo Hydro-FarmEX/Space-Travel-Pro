@@ -55,6 +55,34 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    // Accommodation booking functionality
+    const accButtons = document.querySelectorAll('.book-accommodation');
+    accButtons.forEach(button => {
+        button.addEventListener('click', async function() {
+            const accId = this.dataset.accId;
+            try {
+                const response = await fetch('/api/book_accommodation', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ accommodation_id: accId })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    alert('Accommodation booked successfully!');
+                    window.location.href = '/dashboard';
+                } else {
+                    alert('Booking failed: ' + data.error);
+                }
+            } catch (error) {
+                alert('Error making booking: ' + error.message);
+            }
+        });
+    });
+
     // Initialize Feather icons
     feather.replace();
 

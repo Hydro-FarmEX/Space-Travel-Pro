@@ -36,6 +36,28 @@ def accommodations_page():
     return render_template('accommodations.html', accommodations=accommodations)
 
 # API Endpoints
+@app.route('/api/book_accommodation', methods=['POST'])
+def book_accommodation():
+    try:
+        data = request.json
+        acc_id = data.get('accommodation_id')
+        user_id = "user123"  # In production, get from session
+        
+        if acc_id not in accommodations:
+            return jsonify({"error": "Invalid accommodation ID"}), 400
+            
+        if user_id not in bookings:
+            bookings[user_id] = []
+        
+        acc_data = accommodations[acc_id].copy()
+        acc_data['type'] = 'accommodation'
+        bookings[user_id].append(acc_data)
+        
+        return jsonify({"message": "Accommodation booked successfully"})
+    except Exception as e:
+        logger.error(f"Booking error: {str(e)}")
+        return jsonify({"error": "Booking failed"}), 500
+
 @app.route('/api/book_trip', methods=['POST'])
 def book_trip():
     try:

@@ -18,7 +18,7 @@
                         <p class="card-text">
                             <strong>Price per night:</strong> ${{ "{:,}".format(acc.price_per_night) }}
                         </p>
-                        <button class="btn btn-primary">Book Accommodation</button>
+                        <button class="btn btn-primary book-accommodation" data-acc-id="{{ acc.id }}">Book Accommodation</button>
                     </div>
                 </div>
             </div>
