@@ -1,0 +1,22 @@
+
+# Space Travel Translations
+msgid ""
+msgstr ""
+"Project-Id-Version: Space Travel\n"
+"POT-Creation-Date: 2024-03-14\n"
+"Language: en\n"
+
+msgid "Book Trip"
+msgstr ""
+
+msgid "Pricing"
+msgstr ""
+
+msgid "Dashboard"
+msgstr ""
+
+msgid "Accommodations"
+msgstr ""
+
+msgid "Space Travel"
+msgstr ""

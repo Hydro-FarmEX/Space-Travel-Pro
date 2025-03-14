@@ -1,6 +1,7 @@
 import os
 import logging
 from flask import Flask, render_template, request, jsonify, session, redirect, url_for
+from flask_babel import Babel, gettext as _
 from utils.ai_helper import get_travel_tips
 from utils.mock_data import trips, accommodations, users, bookings
 from utils.chat_helper import generate_chat_response
@@ -11,6 +12,17 @@ logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
 app.secret_key = os.environ.get("SESSION_SECRET", "dev_secret_key")
+
+# Babel configuration
+app.config['BABEL_DEFAULT_LOCALE'] = 'en'
+app.config['BABEL_SUPPORTED_LOCALES'] = ['en', 'ar']
+babel = Babel(app)
+
+@babel.localeselector
+def get_locale():
+    if request.args.get('lang'):
+        session['lang'] = request.args.get('lang')
+    return session.get('lang', 'en')
 
 # Routes
 @app.route('/')

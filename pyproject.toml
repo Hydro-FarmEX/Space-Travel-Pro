@@ -6,6 +6,7 @@ requires-python = ">=3.11"
 dependencies = [
     "email-validator>=2.2.0",
     "eth-account>=0.13.5",
+    "flask-babel>=4.0.0",
     "flask>=3.1.0",
     "flask-sqlalchemy>=3.1.1",
     "google-generativeai>=0.8.4",
