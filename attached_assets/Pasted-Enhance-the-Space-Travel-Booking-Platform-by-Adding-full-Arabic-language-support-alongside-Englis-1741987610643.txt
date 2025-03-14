@@ -1,0 +1,92 @@
+Enhance the Space Travel Booking Platform by:
+✅ Adding full Arabic language support alongside English.
+✅ Implementing a language switcher that allows users to toggle between Arabic 🇦🇪 & English 🇬🇧.
+✅ Ensuring right-to-left (RTL) layout support when Arabic is selected.
+✅ Saving user preferences (language selection) using local storage or session storage.
+✅ Translating static text & dynamic content using i18next for React or Flask-Babel for Python.
+
+🔹 Backend Implementation (Flask)
+Install Flask-Babel to support multi-language text rendering:
+sh
+Copy
+Edit
+pip install Flask-Babel
+Modify the Flask app to detect language preferences:
+python
+Copy
+Edit
+from flask import Flask, request
+from flask_babel import Babel
+
+app = Flask(__name__)
+app.config['BABEL_DEFAULT_LOCALE'] = 'en'  # Default language
+babel = Babel(app)
+
+@babel.localeselector
+def get_locale():
+    return request.args.get('lang') or 'en'  # Switch language dynamically
+
+@app.route('/')
+def home():
+    return {"message": _("Welcome to Space Travel Booking!")}
+
+if __name__ == '__main__':
+    app.run(debug=True)
+🔹 Frontend Implementation (React)
+Install react-i18next:
+sh
+Copy
+Edit
+npm install i18next react-i18next
+Create a translations file (locales.js):
+js
+Copy
+Edit
+const translations = {
+  en: { welcome: "Welcome to Space Travel Booking!" },
+  ar: { welcome: "مرحبًا بك في حجز السفر الفضائي!" }
+};
+
+export default translations;
+Modify App.js:
+jsx
+Copy
+Edit
+import React, { useState } from "react";
+import translations from "./locales";
+
+function App() {
+  const [language, setLanguage] = useState("en");
+
+  const switchLanguage = (lang) => {
+    setLanguage(lang);
+    document.documentElement.dir = lang === "ar" ? "rtl" : "ltr"; // Set direction
+  };
+
+  return (
+    <div>
+      <button onClick={() => switchLanguage("en")}>🇬🇧 English</button>
+      <button onClick={() => switchLanguage("ar")}>🇦🇪 العربية</button>
+      <h1>{translations[language].welcome}</h1>
+    </div>
+  );
+}
+
+export default App;
+🌍 Additional Enhancements
+✅ Use Google Translate API to automatically translate dynamic content.
+✅ Ensure CSS supports RTL text alignment when Arabic is selected:
+
+css
+Copy
+Edit
+body[dir="rtl"] {
+  text-align: right;
+  font-family: "Noto Kufi Arabic", sans-serif;
+}
+✅ Store user’s language preference in local storage for persistence:
+
+js
+Copy
+Edit
+localStorage.setItem("language", selectedLanguage);
