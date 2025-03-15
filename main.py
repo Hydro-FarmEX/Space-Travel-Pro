@@ -35,6 +35,10 @@ def dashboard():
 def accommodations_page():
     return render_template('accommodations.html', accommodations=accommodations)
 
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
 # API Endpoints
 @app.route('/api/book_accommodation', methods=['POST'])
 def book_accommodation():
